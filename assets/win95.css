@@ -13,7 +13,7 @@
 
 
 #CV {
-    margin-top: 5%;
+    margin-top: 4rem;
 }
 
 html {
@@ -35,6 +35,36 @@ body {
     background-image: url(clouds2.jpg);
     color:#212529;
 }
+
+.about {
+    text-align: justify;
+    line-height: 1.2;
+}
+
+.single-project {
+    /* background-color: #2d49eb; */
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.single-project .project_text {
+    /* background-color: #a5cef7; */
+    padding: 0.5rem 0 0.5rem 0;
+    margin: 0rem 2rem 0rem 2rem;
+    text-align: justify;
+    line-height: 1;
+}
+
+.single-project .project_img {
+    width: 250px;
+    height: 150px;
+    overflow: hidden;
+    /* background-color: #1a0094; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /*
 
