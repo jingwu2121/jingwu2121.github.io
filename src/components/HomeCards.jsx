@@ -22,7 +22,7 @@ const HomeCards = () => {
                 <Card logo={ about } title='About Me'>
                     Hey, welcome to my homepage. :D <br />
                         
-                    I am a 1st year DPhil student at <a href="https://www.robots.ox.ac.uk/ActiveVision/" target="_blank">Active Vision Group</a>, University of Oxford, jointly supervised by Professor <a href="https://www.robots.ox.ac.uk/~victor/" target="_blank">Victor Prisacariu</a> and Dr. <a href="https://campar.in.tum.de/Main/IroLaina" target="_blank">Iro Laina</a>. I also work closely with <a href="https://scholar.google.com/citations?user=XLlgbBoAAAAJ&hl=en" target="_blank">Xinghui Li</a>, and Dr. <a href="https://jwbian.net/" target="_blank">Jia-Wang Bian</a>.
+                    I am a 1st year DPhil student at <a href="https://www.robots.ox.ac.uk/ActiveVision/" target="_blank">Active Vision Group</a>, University of Oxford, jointly supervised by Professor <a href="https://www.robots.ox.ac.uk/~victor/" target="_blank">Victor Prisacariu</a> and Dr. <a href="https://campar.in.tum.de/Main/IroLaina" target="_blank">Iro Laina</a>. I also work closely with <a href="https://scholar.google.com/citations?user=XLlgbBoAAAAJ&hl=en" target="_blank">Xinghui Li</a>, Dr. <a href="https://jwbian.net/" target="_blank">Jia-Wang Bian</a>, and Dr. <a href="https://wanggrun.github.io/" target="_blank">Guangrun Wang</a>.
                     Before this, I interned at Westlake University, where I was mentored by Professor <a href="https://ethliup.github.io/">Liu Peidong</a>.
                     I obtained my M.Sc. degree with <b>Distinction</b> from Imperial College London.
                     Prior to that, I received my B.Eng. from the University of Electronic Science and Technology of China (UESTC).
@@ -30,14 +30,14 @@ const HomeCards = () => {
                     <br />
                     <br />
                     <div className="time">
-                        <a href="https://twitter.com/jingwu23" className="btn start-button">
+                        <a href="https://twitter.com/jingwu23" className="btn start-button mx-2">
                             <img src={user_computer} alt="Twitter" />Twitter
                         </a>
 
-                        <a href="https://www.linkedin.com/in/jing-wu-068b7b1b4/" className="btn start-button">
+                        <a href="https://www.linkedin.com/in/jing-wu-068b7b1b4/" className="btn start-button mx-2">
                             <img src={users} alt="Linkedin" />Linkedin
                         </a>
-                        <a href="https://github.com/jingwu2121" className="btn start-button">
+                        <a href="https://github.com/jingwu2121" className="btn start-button mx-2">
                             <img src={directory_folder_options} alt="GitHub" />GitHub
                         </a>
                     </div>
@@ -72,11 +72,11 @@ const HomeCards = () => {
 
         <div className="container">
             <Card title='Research' logo={note}>
-            <div class="row single-project">
-                <div class="col-4 project_img">
+            <div className="row single-project">
+                <div className="col-4 project_img">
                     <img className='img-fluid' src={gaussctrl} alt="" />
                 </div>
-                <div class="col-8">
+                <div className="col-8">
                         <h5><a href="https://gaussctrl.active.vision/" target="_blank">GaussCtrl: Multi-View Consistent Text-Driven 3D Gaussian Splatting Editing</a></h5> 
                         <b>Jing Wu</b>, Jia-Wang Bian, Xinghui Li, Guangrun Wang, Ian Reid, Philip Torr, Victor Adrian Prisacariu  <br />
                         <i>arXiv</i>, 2024 <br />
@@ -88,11 +88,11 @@ const HomeCards = () => {
                 </div>
             </div>
 
-            <div class="row single-project">
-                <div class="col-4 project_img">
+            <div className="row single-project">
+                <div className="col-4 project_img">
                     <img className='img-fluid' src={derainnerf} alt="" />
                 </div>
-                <div class="col-8">
+                <div className="col-8">
                     <h5><a href="https://arxiv.org/abs/2403.20013" target="_blank">DerainNeRF: 3D Scene Estimation with Adhesive Waterdrop Removal</a></h5> 
                     Yunhao Li, <b>Jing Wu</b>, Lingzhe Zhao, Peidong Liu <br />
                     <i>ICRA</i>, 2024 <br />

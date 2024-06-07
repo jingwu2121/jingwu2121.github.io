@@ -1,14 +1,14 @@
 import { createHashRouter, Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
 import React from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './components/Navbar'
-import Title from './components/Title'
-import HomeCards from './components/HomeCards'
+import '../node_modules/katex/dist/katex.min.css'
 import HomePage from './pages/HomePage'
 import MainLayout from './layouts/MainLayout'
 import CV from './pages/CV'
 import Contact from './pages/Contact'
 import Misc from './pages/Misc'
+import Blog from './pages/Blog'
+import BlogPost from './components/BlogPost'
 
 const router = createHashRouter(
   createRoutesFromElements( 
@@ -17,6 +17,9 @@ const router = createHashRouter(
     <Route path='/cv' element={ <CV /> } />
     <Route path='/contact' element={ <Contact /> } />
     <Route path='/misc' element={ <Misc /> } />
+    <Route path='/blog' element={ <Blog /> } />
+    <Route path='/blog/:blogId' element={ <BlogPost /> } />
+
   </Route>
   )
 )
