@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import 'katex/dist/katex.min.css';
-/* highlight.css */
-@import 'highlight.js/styles/default.css';
 
 html {
   position: relative;
