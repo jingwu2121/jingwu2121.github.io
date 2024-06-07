@@ -20,7 +20,7 @@ const Blog = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const postModules = import.meta.glob('/src/posts/*.md');
+            const postModules = import.meta.glob('/public/posts/*.md');
             const postPaths = Object.keys(postModules)
 
             let frontmatter = []
@@ -38,7 +38,7 @@ const Blog = () => {
         }, []);
 
     return (
-        <div className="container mt-5 pt-3">
+        <div className="container mt-5 pt-3 blog">
             <Card title="Blogs" logo={tree}>
                 {metas.map((meta, index) => (
                     <div key={index} className='blog-header'>
@@ -48,8 +48,7 @@ const Blog = () => {
                         {meta.date}
                     </div>
                 ))}
-            </Card>
-                        
+            </Card>          
         </div>
   )
 }

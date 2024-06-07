@@ -16,7 +16,7 @@ const BlogPost = () => {
 
     useEffect(() => {
         const loadPost = async () => {
-            const res = await fetch(`/src/posts/${post.blogId}.md`);
+            const res = await fetch(`/public/posts/${post.blogId}.md`);
             const text = await res.text();
             const { content, data } = matter(text);
 
