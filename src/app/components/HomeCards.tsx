@@ -63,7 +63,7 @@ const HomeCards = () => {
           
           <Card logo={note} title="News" >
             <ul className="m-4">
-                <li>Starting my DPhil at Oxford! :3</li>
+                <li>Two papers accepted by ECCV 2024!</li>
             </ul>
           </Card>
       </div>
@@ -74,7 +74,7 @@ const HomeCards = () => {
           <div className="divide-y divide-slate-700 grid gap-y-2">
             <Publication teaser={gaussctrl} paper_title='GaussCtrl: Multi-View Consistent Text-Driven 3D Gaussian Splatting Editing' web='https://gaussctrl.active.vision/'>
               <b>Jing Wu*</b>, Jia-Wang Bian*, Xinghui Li, Guangrun Wang, Ian Reid, Philip Torr, Victor Adrian Prisacariu  <br />
-              <i>arXiv</i>, 2024 <br />
+              <i>ECCV</i>, 2024 <br />
               [<a className='text-blue-600 hover:text-purple-600' href="https://arxiv.org/abs/2403.08733" target="_blank">Paper</a>][<a className='text-blue-600 hover:text-purple-600' href="https://gaussctrl.active.vision/" target="_blank">Web</a>]
           
               <br />
