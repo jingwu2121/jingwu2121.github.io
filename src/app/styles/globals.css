@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  
+body {
+  font-family: 'VT323', monospace;
+  background: teal;
+  background-image: url(../images/clouds2.jpg);
+  color:#212529;
+  padding-bottom: 28px;
+}
+
+li {
+  list-style-type: disc;
+}
+
+h1 {
+  @apply text-3xl my-3
+}
+
+h2 {
+  @apply text-2xl my-2 
+}
+
+h3 {
+  @apply text-xl my-1
+}
+
+.posts a {
+  @apply text-blue-600 hover:text-purple-600
+}
+
+.posts ul,ol {
+  @apply px-5 md:px-10
+}
+
+
+
+/* a {
+  color: aqua;
+}
+
+a:hover {
+  text-decoration: underline;
+} */
