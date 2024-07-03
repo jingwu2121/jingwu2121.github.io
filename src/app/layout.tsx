@@ -10,7 +10,7 @@ const font = Ubuntu({
 });
 
 export const metadata: Metadata = {
-  title: "Jing Wu",
+  title: "Jing Wu -- Active Vision, Oxford",
   description: "3D Computer Vision, PhD Student, Oxford",
 };
 
