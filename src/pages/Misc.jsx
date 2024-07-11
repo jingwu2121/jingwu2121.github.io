@@ -28,9 +28,14 @@ const Misc = () => {
 
         <div className='container text-center'>
             <a href="https://clustrmaps.com/site/1bzi7"  title="Visit tracker"><img src="//www.clustrmaps.com/map_v2.png?d=w5GKewlMS81Z30508D4q2IkFOZgvzpY2QjmU5MglUB4&cl=ffffff" /></a>
+
+            {/* <a href="https://map1.maploco.com/visited-countries/mine.php?c1=m672jxbips-b33j9zwphc-b33jeehfr4-b67s59c4sg-2rrvtnak8w">
+            <img src="https://map1.maploco.com/visited-countries/ml/m672jxbips-b33j9zwphc-b33jeehfr4-b67s59c4sg-2rrvtnak8w.gif"  />
+            </a> */}
+            
         </div>
         
-
+        
     </div>
   )
 }
