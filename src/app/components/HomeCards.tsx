@@ -75,7 +75,7 @@ const HomeCards = () => {
             <Publication teaser={gaussctrl} paper_title='GaussCtrl: Multi-View Consistent Text-Driven 3D Gaussian Splatting Editing' web='https://gaussctrl.active.vision/'>
               <b>Jing Wu*</b>, Jia-Wang Bian*, Xinghui Li, Guangrun Wang, Ian Reid, Philip Torr, Victor Adrian Prisacariu  <br />
               <i>ECCV</i>, 2024 <br />
-              [<a className='text-blue-600 hover:text-purple-600' href="https://arxiv.org/abs/2403.08733" target="_blank">Paper</a>][<a className='text-blue-600 hover:text-purple-600' href="https://gaussctrl.active.vision/" target="_blank">Web</a>]
+              [<a className='text-blue-600 hover:text-purple-600' href="https://arxiv.org/abs/2403.08733" target="_blank">Paper</a>][<a className='text-blue-600 hover:text-purple-600' href="https://gaussctrl.active.vision/" target="_blank">Web</a>][<a className='text-blue-600 hover:text-purple-600' href="https://github.com/ActiveVisionLab/gaussctrl" target="_blank">Code</a>][<a className='text-blue-600 hover:text-purple-600' href="https://github.com/jingwu2121/gaussctrl/tree/main/data" target="_blank">Data</a>] 
           
               <br />
               <br />
