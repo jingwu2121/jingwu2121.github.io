@@ -1,0 +1,133 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { SITE, HOME } from "@consts";
+import ArrowCard from "@components/ArrowCard.astro";
+import Link from "@components/Link.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import PublicationCard from "@components/PublicationCard.astro";
+import SocialIcons from "@components/SocialIcons.astro";
+
+const blog = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
+
+const publications: CollectionEntry<"publications">[] = (
+  await getCollection("publications")
+)
+  .filter((publication) => !publication.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_PUBLICATIONS_ON_HOMEPAGE);
+---
+
+<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <h1 class="animate font-semibold text-black dark:text-white">
+        Hello! :D 👋
+      </h1>
+      <div class="space-y-16 text-justify">
+        <section>
+          <article class="space-y-4">
+            <span class="animate">
+              <p>
+                Welcome to my homepage. <br>
+                I am a 1st year DPhil student at <Link href="https://www.robots.ox.ac.uk/ActiveVision/">Active Vision Group</Link>, University of Oxford, jointly supervised by Professor <Link href="https://www.robots.ox.ac.uk/~victor/">Victor Prisacariu</Link> and Dr. <Link href="https://campar.in.tum.de/Main/IroLaina">Iro Laina</Link>. I also work closely with <Link href="https://xinghui-li.github.io/">Xinghui Li</Link>, Dr. <Link href="https://jwbian.net/">Jia-Wang Bian</Link>. Before this, I interned at Westlake University, where I was mentored by Professor <Link href="https://ethliup.github.io/">Peidong Liu</Link>.
+                
+              </p>
+              
+            </span>
+            <span class="animate">
+              <p>
+                I obtained my M.Sc. degree with <strong>Distinction</strong> from Imperial College London. Prior to that, I received my B.Eng. from the University of Electronic Science and Technology of China (UESTC). I was awarded the Outstanding Graduate Award of Sichuan Province.
+              </p>
+            </span>
+          </article>
+        </section>
+
+        <section class="animate space-y-2 border-2 border-red-400 border-dashed p-2 text-red-400">
+          📢📢 Check Our New Paper: GaussCtrl <Link href="https://gaussctrl.active.vision/">here</Link>
+        </section>
+
+        <section class="animate space-y-6">
+          <span class="animate">
+            <h4 class="font-semibold text-black dark:text-white">
+              Let's Connect
+            </h4>
+            <article>
+              <p>
+                If you want to get in touch with me about something or just to say
+                hi, reach out on social media or send me an email. Subscribe to the academic blogs with RSS!
+              </p>
+            </article>
+            <SocialIcons icon_size={'text-3xl'} />
+          </span>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              Research Interests
+            </h2>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            <li>3D Editing</li>
+            <li>Generative Models, 3D Gaussian Splatting</li>
+            <li>3D Reconstruction, NeRF</li>
+          </ul>
+        </section>
+        
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              News
+            </h2>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            <li>[07/2024]: Two papers accepted by ECCV 2024!</li>
+            <li>[10/2023]: Starting my PhD at Oxford</li>
+          </ul>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              Recent research
+            </h2>
+            <Link href="/publications"> See all research </Link>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            {
+              publications.map((publication) => (
+                <li>
+                  <PublicationCard entry={publication} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              Latest posts
+            </h2>
+            <Link href="/blog"> See all posts </Link>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            {
+              blog.map((post) => (
+                <li>
+                  <ArrowCard entry={post} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+      </div>
+    </aside>
+  </Container>
+</Layout>

@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { CV } from "@consts";
+import CVCard from "@components/CVCard.astro";
+
+// TO Modify
+const works = [
+  {company:"Westlake University", time: "05.2023-09.2023", job_title: "Research Assistant", location: "Hangzhou, China", description: "Computer Vision and Geometric Learning Lab (CVGL) | PI: Prof. Liu Peidong"},
+]
+const educations = [
+  {school:"University of Oxford", time: "10.2023 - Present", job_title: "DPhil in Engineering Science", location: "Oxford, UK", description: "Supervisor: Prof. Victor Adrian Prisacariu & Dr. Iro Laina"},
+  {school:"Imperial College London", time: "10.2021 - 10.2022", job_title: "M.Sc. Applied Machine Learning", location: "London, UK", description: "Distinction"},
+  {school:"University of Electronic Science and Technology of China", time: "09.2017 - 06.2021", job_title: "B.Eng. Electronic Information Engineering", location: "Chengdu, China", description: ""},
+]
+---
+
+<Layout title={CV.TITLE} description={CV.DESCRIPTION}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <div class="space-y-10">
+        <div class="animate font-semibold text-black dark:text-white">
+          Work Experience
+        </div>
+        <ul class="animate not-prose flex flex-col gap-4">
+          {works.map((work) => (
+              <CVCard institution={work.company} time={work.time} job_title={work.job_title} location={work.location} description={work.description} />)
+          )}
+        </ul>
+        <div class="animate font-semibold text-black dark:text-white">
+          Education
+        </div>
+        <ul class="animate not-prose flex flex-col gap-4">
+          {educations.map((education) => (
+            <CVCard institution={education.school} time={education.time} job_title={education.job_title} location={education.location} description={education.description} />)
+        )}
+        </ul>
+      </div>
+    </aside>
+  </Container>
+</Layout>
