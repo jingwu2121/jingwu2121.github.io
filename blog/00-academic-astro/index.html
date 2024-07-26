@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍄</text></svg>"><meta name="generator" content="Astro v4.11.5"><!-- Canonical URL --><link rel="canonical" href="https://astro-micro-academic.vercel.app/blog/00-academic-astro/"><!-- Primary Meta Tags --><title>What is new in Astro Micro Academic | Jing Wu</title><meta name="title" content="What is new in Astro Micro Academic | Jing Wu"><meta name="description" content="Features, enhancements, and changes."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://astro-micro-academic.vercel.app/blog/00-academic-astro/"><meta property="og:title" content="What is new in Astro Micro Academic | Jing Wu"><meta property="og:description" content="Features, enhancements, and changes."><meta property="og:image" content="https://astro-micro-academic.vercel.app/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-micro-academic.vercel.app/blog/00-academic-astro/"><meta property="twitter:title" content="What is new in Astro Micro Academic | Jing Wu"><meta property="twitter:description" content="Features, enhancements, and changes."><meta property="twitter:image" content="https://astro-micro-academic.vercel.app/blog-placeholder-1.jpg"><!-- PageFind --><link href="/pagefind/pagefind-ui.css" rel="stylesheet"><script src="/pagefind/pagefind-ui.js"></script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+    updateThemeButtons();
+    addCopyCodeButtons();
+    setGiscusTheme();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const lightThemeButton = document.getElementById("light-theme-button");
+    lightThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+      updateThemeButtons();
+    });
+
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    darkThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+      updateThemeButtons();
+    });
+
+    const systemThemeButton = document.getElementById("system-theme-button");
+    systemThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+      updateThemeButtons();
+    });
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        if (localStorage.theme === "system") {
+          toggleTheme(event.matches);
+        }
+      });
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function updateThemeButtons() {
+    const theme = localStorage.getItem("theme");
+    const lightThemeButton = document.getElementById("light-theme-button");
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    const systemThemeButton = document.getElementById("system-theme-button");
+
+    function removeActiveButtonTheme(button) {
+      button?.classList.remove("bg-black/5");
+      button?.classList.remove("dark:bg-white/5");
+    }
+
+    function addActiveButtonTheme(button) {
+      button?.classList.add("bg-black/5");
+      button?.classList.add("dark:bg-white/5");
+    }
+
+    removeActiveButtonTheme(lightThemeButton);
+    removeActiveButtonTheme(darkThemeButton);
+    removeActiveButtonTheme(systemThemeButton);
+
+    if (theme === "light") {
+      addActiveButtonTheme(lightThemeButton);
+    } else if (theme === "dark") {
+      addActiveButtonTheme(darkThemeButton);
+    } else {
+      addActiveButtonTheme(systemThemeButton);
+    }
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 100);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+
+    setGiscusTheme();
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }
+
+  function addCopyCodeButtons() {
+    let copyButtonLabel = "📋";
+    let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    async function copyCode(codeBlock, copyButton) {
+      const codeText = codeBlock.innerText;
+      const buttonText = copyButton.innerText;
+      const textToCopy = codeText.replace(buttonText, "");
+
+      await navigator.clipboard.writeText(textToCopy);
+      copyButton.innerText = "✅";
+
+      setTimeout(() => {
+        copyButton.innerText = copyButtonLabel;
+      }, 2000);
+    }
+
+    for (let codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.innerText = copyButtonLabel;
+      copyButton.classList = "copy-code";
+
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton?.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+  }
+
+  const setGiscusTheme = () => {
+    const giscus = document.querySelector(".giscus-frame");
+
+    const isDark = document.documentElement.classList.contains("dark");
+
+    if (giscus) {
+      const url = new URL(giscus.src);
+      url.searchParams.set("theme", isDark ? "dark" : "light");
+      giscus.src = url.toString();
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/path/to/your/global.css"><link rel="stylesheet" href="/_astro/about.nupD1NuX.css">
+<style>summary[data-astro-cid-xvrfupwn]{cursor:pointer;border-top-left-radius:.5rem;border-top-right-radius:.5rem;padding:.375rem .75rem;font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}summary[data-astro-cid-xvrfupwn]:hover{background-color:#0000000d}@media (prefers-color-scheme: dark){summary[data-astro-cid-xvrfupwn]:hover{background-color:#ffffff0d}}details[data-astro-cid-xvrfupwn][open] summary[data-astro-cid-xvrfupwn]{background-color:#0000000d}@media (prefers-color-scheme: dark){details[data-astro-cid-xvrfupwn][open] summary[data-astro-cid-xvrfupwn]{background-color:#ffffff0d}}
+</style><script type="module" src="/_astro/hoisted.Bfd9A_oI.js"></script></head> <body> <header data-astro-transition-persist="astro-l7r54iwe-1"> <div class="mx-auto max-w-screen-md px-3"> <div class="flex flex-wrap justify-between gap-y-2"> <a href="/" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Jing Wu&nbsp;🍄
+</div>  </a> <nav class="flex items-center gap-1 text-sm"> <a href="/blog" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> blog </a> <span> / </span> <a href="/publications" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> research </a> <span> / </span> <a href="/cv" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> cv </a> <span> / </span> <a href="/about" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> about </a> <span> / </span> <a href="/tags" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> tags </a> <span> / </span> <button id="magnifying-glass" aria-label="Search" class="flex items-center rounded border border-black/15 bg-neutral-100 px-2 py-1 text-xs transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:bg-neutral-900 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"> <svg height="16" stroke-linejoin="round" viewBox="0 0 16 16" width="16" style="color: currentcolor;"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 7C3.5 5.067 5.067 3.5 7 3.5C8.933 3.5 10.5 5.067 10.5 7C10.5 7.88461 10.1718 8.69256 9.63058 9.30876L9.30876 9.63058C8.69256 10.1718 7.88461 10.5 7 10.5C5.067 10.5 3.5 8.933 3.5 7ZM9.96544 11.0261C9.13578 11.6382 8.11014 12 7 12C4.23858 12 2 9.76142 2 7C2 4.23858 4.23858 2 7 2C9.76142 2 12 4.23858 12 7C12 8.11014 11.6382 9.13578 11.0261 9.96544L14.0303 12.9697L14.5607 13.5L13.5 14.5607L12.9697 14.0303L9.96544 11.0261Z" fill="currentColor"></path></svg>
+&nbsp;Search
+</button> </nav> </div> </div> </header> <!-- <ProgressBar /> --> <main>  <div class="mx-auto max-w-screen-md px-3"> <div class="animate"> <a href="/blog" class="not-prose group relative flex w-fit flex-nowrap rounded border border-black/15 py-1.5 pl-7 pr-3 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute left-2 top-1/2 size-4 -translate-y-1/2 fill-none stroke-current stroke-2"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 scale-x-0 transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-hover:scale-x-100 group-focus-visible:translate-x-0 group-focus-visible:scale-x-100"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-focus-visible:translate-x-0"></polyline> </svg> <div class="text-sm"> Back to blog </div> </a> </div> <div class="my-10 space-y-4"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2024-07-25T00:00:00.000Z"> July 25, 2024 </time> </div>
+&bull;
+<div class="font-base text-sm"> 2 min read </div> </div> <h1 class="animate text-4xl font-semibold text-black dark:text-white"> What is new in Astro Micro Academic </h1> <div class="font-base text-sm "> <a href="/tags/guide" class="mx-1 rounded-full px-2 py-1 bg-orange-300 hover:bg-cyan-200 dark:bg-orange-500 dark:hover:bg-cyan-500 transition-colors duration-300 ease-in-out">
+#guide </a><a href="/tags/log" class="mx-1 rounded-full px-2 py-1 bg-orange-300 hover:bg-cyan-200 dark:bg-orange-500 dark:hover:bg-cyan-500 transition-colors duration-300 ease-in-out">
+#log </a><a href="/tags/rss-feed" class="mx-1 rounded-full px-2 py-1 bg-orange-300 hover:bg-cyan-200 dark:bg-orange-500 dark:hover:bg-cyan-500 transition-colors duration-300 ease-in-out">
+#rss-feed </a> </div> </div> <details open class="animate rounded-lg border border-black/15 dark:border-white/20" data-astro-cid-xvrfupwn> <summary data-astro-cid-xvrfupwn>Table of Contents</summary> <nav class="" data-astro-cid-xvrfupwn> <ul class="py-3" data-astro-cid-xvrfupwn> <li class="list-inside list-disc px-6 py-1.5 text-sm"> <a href="#what-is-new" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> What is New </a>  </li><li class="list-inside list-disc px-6 py-1.5 text-sm"> <a href="#todo" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> TODO </a>  </li><li class="list-inside list-disc px-6 py-1.5 text-sm"> <a href="#done" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> Done </a>  </li><li class="list-inside list-disc px-6 py-1.5 text-sm"> <a href="#math-test" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> Math test </a>  </li><li class="list-inside list-disc px-6 py-1.5 text-sm"> <a href="#中文测试" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> 中文测试 </a>  </li> </ul> </nav> </details> <article class="animate"> <h2 id="what-is-new">What is New</h2>
+<ul>
+<li>Add Math support to the blog</li>
+<li>Add News, Research, Publication, CV sections</li>
+<li>add icon to connect section</li>
+<li>Add tag function to the blog</li>
+</ul>
+<hr/>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>Add Group Page</li>
+<li>Add Opening Section</li>
+<li>Add Award Page</li>
+<li>Clear and rearrange all the posts
+<ul>
+<li>rewrite astro-micro-academics</li>
+<li>astro micro</li>
+<li>get started with astro micro</li>
+<li>blog collection example</li>
+</ul>
+</li>
+<li>Write a complete personal website setup guide</li>
+<li>screenshot and submit theme to astro</li>
+<li>add progress bar on the top</li>
+<li><a href="https://www.webfx.com/tools/emoji-cheat-sheet/">https://www.webfx.com/tools/emoji-cheat-sheet/</a></li>
+</ul>
+<h2 id="done">Done</h2>
+<ul>
+<li>RSS Feed</li>
+<li>add tags to post slug and enable tag based search</li>
+<li>add function to RSS feed only posts with rss-feed tags</li>
+<li>Change SOCIALS</li>
+</ul>
+<h2 id="math-test">Math test</h2>
+<p>This is an inline formula: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = b+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">1</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mn>1</mn><msub><mi>x</mi><mn>1</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">a = \frac{1}{x_1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1.2902em;vertical-align:-0.4451em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em"><span style="top:-2.655em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em"><span class="pstrut" style="height:2.5em"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.394em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mn>22</mn></munderover><msqrt><mrow><mi>a</mi><mo>+</mo><msub><mi>b</mi><mi>n</mi></msub></mrow></msqrt></mrow><annotation encoding="application/x-tex">a = \sum_{n=1}^{22} \sqrt{a+b_n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:3.0682em;vertical-align:-1.2671em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8011em"><span style="top:-1.8829em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em"><span class="pstrut" style="height:3.05em"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">22</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0061em"><span class="svg-align" style="top:-3.2em"><span class="pstrut" style="height:3.2em"></span><span class="mord" style="padding-left:1em"><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span><span style="top:-2.9661em"><span class="pstrut" style="height:3.2em"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewBox="0 0 400000 1296" preserveAspectRatio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2339em"><span></span></span></span></span></span></span></span></span></span>
+<h2 id="中文测试">中文测试</h2> <div class="mt-24"> <div class="grid grid-cols-2 gap-1.5 sm:gap-3"> <div class="invisible"></div> <div class="invisible"></div> </div> </div> <div class="mt-24"> <div class="giscus"></div> <script data-astro-rerun src="https://giscus.app/client.js" data-repo="trevortylerlee/astro-micro" data-repo-id="R_kgDOL_6l9Q" data-category="Announcements" data-category-id="DIC_kwDOL_6l9c4Cfk55" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script> </div> </article> </div>  </main> <footer class="animate"> <div class="mx-auto max-w-screen-md px-3"> <div class="flex justify-between my-2"> <ul class="not-prose flex flex-wrap gap-2"> <a href="https://twitter.com/jingwu23" target="_blank" class="inline-block text-xl decoration-black/30 dark:decoration-white/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 text-current hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out"> <i class="bi bi-twitter-x"></i> </a> <a href="https://github.com/jingwu2121" target="_blank" class="inline-block text-xl decoration-black/30 dark:decoration-white/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 text-current hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out"> <i class="bi bi-github"></i> </a> <a href="https://www.linkedin.com/in/jing-wu-068b7b1b4" target="_blank" class="inline-block text-xl decoration-black/30 dark:decoration-white/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 text-current hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out"> <i class="bi bi-linkedin"></i> </a> <a href="mailto:&#34;jing.wu@eng.ox.ac.uk&#34;" target="_blank" class="inline-block text-xl decoration-black/30 dark:decoration-white/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 text-current hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out"> <i class="bi bi-envelope-fill"></i> </a> <!-- <SocialIcon icon_size={icon_size} URL="#" icon="mortarboard-fill"/> --> <a href="https://astro-micro-academic.vercel.app/rss.xml" target="_blank" class="inline-block text-xl decoration-black/30 dark:decoration-white/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 text-current hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out"> <i class="bi bi-rss-fill"></i> </a> </ul> <button id="back-to-top" class="group relative flex w-fit flex-nowrap rounded border border-black/15 py-1.5 pl-8 pr-3 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute left-2 top-1/2 size-4 -translate-y-1/2 rotate-90 fill-none stroke-current stroke-2"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 scale-x-0 transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-hover:scale-x-100 group-focus-visible:translate-x-0 group-focus-visible:scale-x-100"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-focus-visible:translate-x-0"></polyline> </svg> <div class="text-sm">Back to top</div> </button> </div> <div class="flex items-center justify-between"> <div>&copy; 2024 • Jing Wu • All Rights Reserved 👀<br>
+Built with Astro | Feel free to use my <a href="https://github.com/jingwu2121/astro-micro-academic" target="_self" class="inline-block decoration-black/30 hover:decoration-black/50 focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:decoration-white/50 dark:focus-visible:decoration-white/50 hover:text-cyan-500 focus-visible:text-black dark:hover:text-orange-500 dark:focus-visible:text-white transition-colors duration-300 ease-in-out underline underline-offset-[3px]"> template </a> </div> <div class="flex flex-wrap items-center gap-1.5"> <button id="light-theme-button" aria-label="Light theme" class="group flex size-9 items-center justify-center rounded border border-black/15 hover:bg-black/5 focus-visible:bg-black/5 dark:border-white/20 dark:hover:bg-white/5 dark:focus-visible:bg-white/5"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="transition-colors duration-300 ease-in-out group-hover:animate-pulse group-hover:stroke-black group-focus-visible:animate-pulse group-focus-visible:stroke-black group-hover:dark:stroke-white dark:group-focus-visible:stroke-white"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> </button> <button id="dark-theme-button" aria-label="Dark theme" class="group flex size-9 items-center justify-center rounded border border-black/15 hover:bg-black/5 focus-visible:bg-black/5 dark:border-white/20 dark:hover:bg-white/5 dark:focus-visible:bg-white/5"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="transition-colors duration-300 ease-in-out group-hover:animate-pulse group-hover:stroke-black group-focus-visible:animate-pulse group-focus-visible:stroke-black group-hover:dark:stroke-white dark:group-focus-visible:stroke-white"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <button id="system-theme-button" aria-label="System theme" class="group flex size-9 items-center justify-center rounded border border-black/15 hover:bg-black/5 focus-visible:bg-black/5 dark:border-white/20 dark:hover:bg-white/5 dark:focus-visible:bg-white/5"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="transition-colors duration-300 ease-in-out group-hover:animate-pulse group-hover:stroke-black group-focus-visible:animate-pulse group-focus-visible:stroke-black group-hover:dark:stroke-white dark:group-focus-visible:stroke-white"> <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect> <line x1="8" y1="21" x2="16" y2="21"></line> <line x1="12" y1="17" x2="12" y2="21"></line> </svg> </button> </div> </div> </div> </footer> <aside data-pagefind-ignore> <div id="backdrop" class="bg-[rgba(0, 0, 0, 0.5] invisible fixed left-0 top-0 z-50 flex h-screen w-full justify-center p-6 backdrop-blur-sm" data-astro-transition-persist="astro-3snakcvo-2"> <div id="pagefind-container" class="m-0 flex h-fit max-h-[80%] w-full max-w-screen-sm flex-col overflow-auto rounded border border-black/15 bg-neutral-100 p-2 px-4 py-3 shadow-lg dark:border-white/20 dark:bg-neutral-900"> <div id="search" class="pagefind-ui pagefind-init" data-pagefind-ui data-bundle-path="/pagefind/" data-ui-options="{&#34;showImages&#34;:false,&#34;excerptLength&#34;:15,&#34;resetStyles&#34;:false}"></div>  <div class="mr-2 pb-1 pt-4 text-right text-xs dark:prose-invert">
+Press <span class="prose text-xs dark:prose-invert"><kbd class="">Esc</kbd></span> or click anywhere to close
+</div> </div> </div> </aside> <script>
+  const magnifyingGlass = document.getElementById("magnifying-glass");
+  const backdrop = document.getElementById("backdrop");
+
+  function openPagefind() {
+    const searchDiv = document.getElementById("search");
+    const search = searchDiv.querySelector("input");
+    setTimeout(() => {
+      search.focus();
+    }, 0);
+    backdrop?.classList.remove("invisible");
+    backdrop?.classList.add("visible");
+  }
+
+  function closePagefind() {
+    const search = document.getElementById("search");
+    search.value = "";
+    backdrop?.classList.remove("visible");
+    backdrop?.classList.add("invisible");
+  }
+
+  // open pagefind
+  magnifyingGlass?.addEventListener("click", () => {
+    openPagefind();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/") {
+      e.preventDefault();
+      openPagefind();
+    } else if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      openPagefind();
+    }
+  });
+
+  // close pagefind
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" || e.keyCode === 27) {
+      closePagefind();
+    }
+  });
+
+  // close pagefind when searched result(link) clicked
+  document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("pagefind-ui__result-link")) {
+      closePagefind();
+    }
+  });
+
+  backdrop?.addEventListener("click", (event) => {
+    if (!event.target.closest("#pagefind-container")) {
+      closePagefind();
+    }
+  });
+
+  // prevent form submission
+  const form = document.getElementById("form");
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+</script>  </body></html>
