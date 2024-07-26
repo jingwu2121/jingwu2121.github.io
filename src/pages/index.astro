@@ -17,7 +17,6 @@ const blog = (await getCollection("blog"))
 const publications: CollectionEntry<"publications">[] = (
   await getCollection("publications")
 )
-  .filter((publication) => !publication.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_PUBLICATIONS_ON_HOMEPAGE);
 ---
