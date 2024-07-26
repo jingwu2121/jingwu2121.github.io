@@ -13,7 +13,7 @@ export const HIGHLIGHTAUTHOR = "Jing Wu"
 
 export const HOME: Metadata = {
   TITLE: "Home",
-  DESCRIPTION: "Homepage, About, PhD Student, University of Oxford",
+  DESCRIPTION: "DPhil Student @ Avtive Vision Lab, Oxford | 3D Vision, Generative Models, Diffusion",
 };
 
 export const BLOG: Metadata = {
