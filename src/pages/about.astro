@@ -12,47 +12,49 @@ import Link from "@components/Link.astro";
     <aside data-pagefind-ignore>
       <div class="space-y-10">
         <div class="animate font-semibold text-black dark:text-white">
-          About
+          About 😉 
         </div>
-        <section class="animate">
+        <ul class="animate not-prose flex flex-col gap-4 text-justify">
           <ul>
             <li>✔ <Link href="https://www.oubac.com/">O.U.Ba.C.</Link> Member! :3</li>
             <li>✔ Piano Lover! (๑•̀ㅂ•́)و✧</li>
             <li>✔ Procreate Lover! (I am a part-time artist as well!)</li>
             <li>✔ Amateur music producer. I do J-Rock, funk, neo soul, soothe piano & summer vibe!</li>
-            <li>✔ Pre-professional badminton player</li>            
-          </ul>
-          <p class="my-5">I also enjoy designing frontend websites. <Link href="https://jingwu-portfolio-nextjs.vercel.app/">Old Site | Nextjs</Link></p>
-          <p class="my-10">Resources: <Link href="https://numbda.cs.tsinghua.edu.cn/~yuwj/TH-CPL.pdf">THU-CPL</Link>, 
-            <Link href="https://www.ccf.org.cn/Academic_Evaluation/AI/">CCF</Link></p>
-          <div class="flex flex-col min-[410px]:flex-row justify-center">
-            <div class="my-10">
-              <div class="bg-neutral-300 w-[350px] h-[250px] object-cover rounded-xl -rotate-6 overflow-hidden">
-                <Image
-                  src={'/life_image.JPG'}
-                  alt={'life2'}
-                  width={350}
-                  height={250}
-                  class="w-[350px] h-[250px] object-cover rounded-xl overflow-hidden"
-                />
-              </div>
-              <p class="mt-4 text-sm">My first Chinese New Year abroad, making various dumplings!!</p>
-            </div>
-            <div class="mx-10 my-10">
-              <div class="bg-neutral-300 w-[150px] h-[250px] object-cover rounded-xl rotate-6 mx-auto sm:ml-auto">
-                <Image
-                  src={'/my_image.jpg'}
-                  alt={'life2'}
-                  width={150}
-                  height={250}
-                  class="w-[150px] h-[250px] object-cover rounded-xl "
-                />
-              </div>
-              <p class="mt-4 text-sm">Me at Taylor Swift Eras Tour!</p>
-            </div>
-          </div>
+            <li>✔ Pre-professional badminton player</li>
+          </ul>       
           
-        </section>
+          <p class="text-justify">I also enjoy designing frontend websites. <Link href="https://jingwu-portfolio-nextjs.vercel.app/">Old Site | Nextjs</Link> <br>
+          Resources: <Link href="https://numbda.cs.tsinghua.edu.cn/~yuwj/TH-CPL.pdf">THU-CPL</Link>, 
+          <Link href="https://www.ccf.org.cn/Academic_Evaluation/AI/">CCF</Link>
+          </p>
+        </ul>
+
+        <div class="flex flex-col md:flex-row justify-center">
+          <div class="my-10 text-center">
+            <div class="bg-neutral-300 w-[350px] h-[250px] object-cover rounded-xl -rotate-6 overflow-hidden">
+              <Image
+                src={'/life_image.JPG'}
+                alt={'life2'}
+                width={350}
+                height={250}
+                class="w-[350px] h-[250px] object-cover rounded-xl overflow-hidden"
+              />
+            </div>
+            <p class="mt-4 text-sm">My first Chinese New Year abroad, making various dumplings!!</p>
+          </div>
+          <div class="mx-10 my-10 text-center">
+            <div class="bg-neutral-300 w-[150px] h-[250px] object-cover rounded-xl rotate-6 mx-auto sm:ml-auto">
+              <Image
+                src={'/my_image.jpg'}
+                alt={'life2'}
+                width={150}
+                height={250}
+                class="w-[150px] h-[250px] object-cover rounded-xl "
+              />
+            </div>
+            <p class="mt-4 text-sm">Me at Taylor Swift Eras Tour!</p>
+          </div>
+        </div>
       </div>
     </aside>
   </Container>
