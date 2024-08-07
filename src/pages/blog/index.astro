@@ -5,8 +5,11 @@ import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import { BLOG } from "@consts";
 
-const data = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
+const allPosts = await getCollection("blog");
+
+// Filter out drafts and posts in the "zh" folder for display
+const data = allPosts
+  .filter((post) => !post.data.draft && !post.id.startsWith('zh/'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 type Acc = {
