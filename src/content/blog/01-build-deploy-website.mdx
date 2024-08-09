@@ -189,4 +189,11 @@ Congratulations!! :tada: :tada:
 Go to `https://<username>.github.io` or `https://<username>.github.io/my-repo` to have a look at your live website!
 
 ## Make Your Website Visible to Google
-If you are not able to search your website on Google, you might need to add your website manually in Google Search Console. To do this, 
+If you are not able to search your website on Google, you might need to add your website manually in Google Search Console. (Skip this if your site already shows in Google search results). 
+To do this, go to [Google Search Console](https://search.google.com/search-console/about), click start, then you should have this page. Fill in your website URL as required. 
+<img src="/blog_images/01/image4.png" alt="git bash" width="80%"/>
+
+You will be required to verify the ownership. So follow the instructions in `HTML tag`, copy the `<meta>` tag and go to `src/components/Head.astro`, paste it right before the global metadata. 
+<img src="/blog_images/01/image5.png" alt="git bash" width="80%"/>
+
+Then, push it into the Github, and click verify. It takes a while to verify and takes days for Google to analyze your website. When it is done, your wensite will appear in the Google search results.  
