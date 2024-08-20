@@ -9,52 +9,62 @@
 
 <url>
   <loc>https://jingwu2121.github.io/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://jingwu2121.github.io/blog/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jingwu2121.github.io/publications/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jingwu2121.github.io/cv/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jingwu2121.github.io/about/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://jingwu2121.github.io/tags/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://jingwu2121.github.io/blog/00-academic-astro/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <loc>https://jingwu2121.github.io/blog/01-build-deploy-website/</loc>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://jingwu2121.github.io/tags/guide/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <loc>https://jingwu2121.github.io/tags/Astro/</loc>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://jingwu2121.github.io/tags/log/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <loc>https://jingwu2121.github.io/tags/Frontend/</loc>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://jingwu2121.github.io/tags/rss-feed/</loc>
-  <lastmod>2024-07-29T10:01:11+00:00</lastmod>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://jingwu2121.github.io/tags/Personal-Website/</loc>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://jingwu2121.github.io/blog/zh/00-academic-astro-zh/</loc>
+  <lastmod>2024-08-13T16:18:21+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
