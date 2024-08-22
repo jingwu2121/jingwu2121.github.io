@@ -1,6 +1,6 @@
 ---
 title: "GaussCtrl: Multi-View Consistent Text-Driven 3D Gaussian Splatting Editing"
-description: ""
+description: "* denotes equal contribution"
 date: "2024-07-01"
 authors: "Jing Wu*, Jia-Wang Bian*, Xinghui Li, Guangrun Wang, Ian Reid, Philip Torr, Victor Adrian Prisacariu"
 paperURL: "Paper: https://arxiv.org/abs/2403.08733"

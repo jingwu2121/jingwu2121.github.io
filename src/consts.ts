@@ -5,7 +5,7 @@ export const SITE: Site = {
   DESCRIPTION: "DPhil Student @ Avtive Vision Lab, Oxford | 3D Vision, Generative Models, Diffusion",
   EMAIL: "jing.wu@eng.ox.ac.uk",
   NUM_POSTS_ON_HOMEPAGE: 2,
-  NUM_PUBLICATIONS_ON_HOMEPAGE: 3,
+  NUM_PUBLICATIONS_ON_HOMEPAGE: 2,
   SITEURL: 'https://astro-micro-academic.vercel.app' // Update here to link the RSS icon to your website rss
 };
 
