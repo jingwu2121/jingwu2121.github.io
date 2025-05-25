@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { HIGHLIGHTAUTHOR } from "@consts";
+
+export interface Props {
+    music_file_path: string;
+    pdf_file_path: string;
+    title: string;
+    description: string;
+    link_description: string;
+}
+  
+const { music_file_path, pdf_file_path, title, description, link_description } = Astro.props;
+
+
+---
+
+<div
+  class="w-full not-prose group relative flex justify-around md:grid-cols-[204px_auto] gap-4 rounded-lg items-center border border-black/15 px-4 py-3  transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"
+>
+
+  <div class="flex items-center h-full">
+    <div class="flex flex-col w-full">
+      <div class="text-md font-semibold w-full">
+        {title}
+      </div>
+
+      <p class="text-sm mt-2 break-words">
+        {description}
+      </p>
+    </div>
+  </div>
+
+  <div class="music-player flex items-center justify-center">
+    <audio class="" id="audio-player" controls>
+        <source src={music_file_path} type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+  </div>
+  
+  <div class="flex items-center h-full">
+    <div class="flex flex-col w-full">
+
+      {pdf_file_path ? <span>
+        {link_description}:{' '}
+        <a href={pdf_file_path} target="_blank" class="text-blue-500 hover:text-blue-700">
+          here
+        </a>
+      </span> : 'My Original Music'}
+    </div>
+  </div>
+
+
+
+</div>

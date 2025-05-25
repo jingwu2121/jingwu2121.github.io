@@ -1,0 +1,86 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { HIGHLIGHTAUTHOR } from "@consts";
+
+export interface Props {
+    art_file_path: string;
+    title: string;
+    link: string;
+    tool: string;
+    width: number;
+    height: number;
+}
+  
+const { art_file_path, title, link, tool, width, height } = Astro.props;
+
+// const splitStr = (authors: string | undefined, targetAuthor: string) => {
+//   if (!authors) return [];
+//   const parts = authors.split(new RegExp(`(${targetAuthor})`, 'g'));
+//   return parts;
+// };
+// const decomposeURL = (URL: string | undefined) => {
+//   if (!URL) return { text: '', url: '' };
+//   const parts = URL.split(": ");
+//   return { text: parts[0], url: parts[1] };
+// };
+
+// const dataLink = decomposeURL(entry.data.dataURL);
+// const paperLink = decomposeURL(entry.data.paperURL);
+// const codeLink = decomposeURL(entry.data.codeURL);
+// const webLink = decomposeURL(entry.data.webURL);
+// const authorsParts = splitStr(entry.data.authors, HIGHLIGHTAUTHOR);
+
+---
+
+<div
+  class="w-full h-full not-prose group relative flex flex-col items-center rounded-lg border border-black/15 px-4 py-3 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"
+>
+
+  <video
+    src={art_file_path ?? ''}
+    width={width}
+      height={height}
+      class={`sm:w-[${width}px] sm:h-[${height}px] shadow-sm rounded-md sm:mr-6 hover:opacity-80 transition hidden md:flex`}
+    controls
+    autoplay
+    loop
+    muted
+    onclick="window.open(this.src, '_blank')"
+    style="cursor: pointer;"
+  />
+
+
+  <div class="flex items-center h-full">
+      <div class="w-full">
+        <div class="text-md font-semibold w-full">
+         {title}
+        </div>
+
+      </div>
+  </div>
+  <div class="flex items-center h-full">
+      <div class="w-full">
+        <div class="text-sm mt-2 break-words">
+          Made with {tool}
+        </div>
+
+      </div>
+  </div>
+  <div class="flex items-center h-full">
+    <div class="w-full">
+      <p class="text-sm mt-2 break-words">
+        {link ? <span>
+          Inspired by{' '}
+          <a href={link} target="_blank" class="text-blue-500 hover:text-blue-700">
+            this link
+          </a>
+        </span> : 'Completely Original'}
+      </p>
+
+    </div>
+  </div>
+  
+</div>
+
+

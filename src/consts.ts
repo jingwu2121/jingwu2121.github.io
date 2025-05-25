@@ -27,6 +27,12 @@ export const RESEARCH: Metadata = {
     "A collection of my publications with links to paper, repositories and live demos.",
 };
 
+export const MUSIC: Metadata = {
+  TITLE: "Music",
+  DESCRIPTION:
+    "A collection of my original music and guitar arrangements.",
+};
+
 export const CV: Metadata = {
   TITLE: "CV",
   DESCRIPTION:
