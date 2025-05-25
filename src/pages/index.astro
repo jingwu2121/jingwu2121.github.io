@@ -8,6 +8,9 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import PublicationCard from "@components/PublicationCard.astro";
 import SocialIcons from "@components/SocialIcons.astro";
+import VideoArtCard from "@components/VideoArtCard.astro";
+import ImageArtCard from "@components/ImageArtCard.astro";
+import MusicCard from "@components/MusicCard.astro";
 
 const allPosts = await getCollection("blog");
 
@@ -35,7 +38,7 @@ const publications: CollectionEntry<"publications">[] = (
             <span class="animate">
               <p>
                 Welcome to my homepage. <br>
-                I am a 1st year DPhil/PhD student at <Link href="https://www.robots.ox.ac.uk/ActiveVision/">Active Vision Group</Link>, University of Oxford, jointly supervised by Professor <Link href="https://www.robots.ox.ac.uk/~victor/">Victor Prisacariu</Link> and Dr. <Link href="https://campar.in.tum.de/Main/IroLaina">Iro Laina</Link>. I also work closely with <Link href="https://xinghui-li.github.io/">Xinghui Li</Link>, Dr. <Link href="https://jwbian.net/">Jia-Wang Bian</Link>. Before this, I interned at Westlake University, where I was mentored by Professor <Link href="https://ethliup.github.io/">Peidong Liu</Link>.
+                I am a 2nd year DPhil/PhD student at <Link href="https://www.robots.ox.ac.uk/ActiveVision/">Active Vision Group</Link>, <Link href="https://www.ox.ac.uk/">University of Oxford</Link>, jointly supervised by Professor <Link href="https://www.robots.ox.ac.uk/~victor/">Victor Prisacariu</Link> and Dr. <Link href="https://campar.in.tum.de/Main/IroLaina">Iro Laina</Link>. I also work closely with <Link href="https://xinghui-li.github.io/">Xinghui Li</Link>, Dr. <Link href="https://jwbian.net/">Jia-Wang Bian</Link>. Before this, I interned at Westlake University, where I was mentored by Professor <Link href="https://ethliup.github.io/">Peidong Liu</Link>.
                 
               </p>
               
@@ -53,21 +56,6 @@ const publications: CollectionEntry<"publications">[] = (
         </section>
 
         <section class="animate space-y-6">
-          <span class="animate">
-            <h4 class="font-semibold text-black dark:text-white">
-              Let's Connect
-            </h4>
-            <article>
-              <p>
-                If you want to get in touch with me about something or just to say
-                hi, reach out on social media or send me an email. Subscribe to the academic blogs with RSS!
-              </p>
-            </article>
-            <SocialIcons icon_size={'text-3xl'} />
-          </span>
-        </section>
-
-        <section class="animate space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-y-2">
             <h2 class="font-semibold text-black dark:text-white">
               Research Interests
@@ -80,7 +68,7 @@ const publications: CollectionEntry<"publications">[] = (
           </ul>
         </section>
         
-        <section class="animate space-y-6">
+        <!-- <section class="animate space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-y-2">
             <h2 class="font-semibold text-black dark:text-white">
               News
@@ -90,7 +78,7 @@ const publications: CollectionEntry<"publications">[] = (
             <li>[07/2024]: Two papers accepted by ECCV 2024!</li>
             <li>[10/2023]: Starting my PhD at Oxford</li>
           </ul>
-        </section>
+        </section> -->
 
         <section class="animate space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-y-2">
@@ -113,6 +101,67 @@ const publications: CollectionEntry<"publications">[] = (
         <section class="animate space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-y-2">
             <h2 class="font-semibold text-black dark:text-white">
+              😉 Art Works
+            </h2>
+          </div>
+          Besides research, I have great passion for visual arts and music. Here are some of my works. 
+          <ul class="not-prose grid grid-cols-2 gap-4">
+
+            <li>
+              <VideoArtCard art_file_path="/artworks/luv.mp4" title="Luv" link="https://x.com/bangjoy1992/status/1522460892717551621" tool="Blender" width={240} height={135} />
+            </li>
+            <li>
+              <ImageArtCard art_file_path="/artworks/Pool.png" title="Swimming Pool" link="https://www.youtube.com/watch?v=KcsRfb1_O3w" tool="Blender" width={240} height={135} />
+            </li>
+            <li>
+              <ImageArtCard art_file_path="/artworks/traffic.png" title="Traffic Light" link="" tool="Procreate" width={240} height={135} />
+            </li>
+            <li>
+              <ImageArtCard art_file_path="/artworks/summertime.png" title="Summertime [Album Cover]" link="" tool="Procreate" width={135} height={135}   />
+            </li>
+            <li>
+              <ImageArtCard art_file_path="/artworks/Fly.png" title="Fly [Collage Art]" link="" tool="Procreate" width={135} height={135}   />
+            </li>
+
+          </ul>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              😉 Music
+            </h2>
+            <Link href="/musics"> More music </Link>
+          </div>
+          Here are some of my original music and guitar arrangements.
+          <ul class="not-prose flex flex-col gap-4">
+
+            <li>
+              <MusicCard music_file_path="/music/Chinese-Style-demo.mp3" pdf_file_path="" title="冬日黄昏" description="A Chinese style arrangement" link_description="" />
+            </li>
+            <li>
+              <MusicCard music_file_path="/music/House demo.mp3" pdf_file_path="" title="理想？ 现实？" description="Summertime vibes" link_description="" />
+            </li>
+            <li>
+              <MusicCard music_file_path="/music/fallin' all in you.mp3" pdf_file_path="/pdfs/fallin' all in you.pdf" title="Fallin' all in you" description="Shawn Mendes" link_description="Guitar Tabs" />
+            </li>
+            <li>
+              <MusicCard music_file_path="/music/2002.mp3" pdf_file_path="/pdfs/2002.pdf" title="2002" description="Anne Marie" link_description="Guitar Tabs" />
+            </li>
+            <li>
+              <MusicCard music_file_path="/music/strawberries&cigarettes.mp3" pdf_file_path="/pdfs/strawberries&cigarettes.pdf" title="Strawberries & Cigarettes" description="Troye Sivan" link_description="Guitar Tabs" />
+            </li>
+            <li>
+              <MusicCard music_file_path="/music/WUJI.mp3" pdf_file_path="/pdfs/WUJI.pdf" title="无羁 WU JI" description="The Untamed OST" link_description="Guitar Tabs" />
+            </li>
+
+
+          </ul>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
               Latest posts
             </h2>
             <Link href="/blog"> See all posts </Link>
@@ -128,6 +177,21 @@ const publications: CollectionEntry<"publications">[] = (
           </ul>
         </section>
 
+        <section class="animate space-y-6">
+          <span class="animate">
+            <h4 class="font-semibold text-black dark:text-white">
+              Let's Connect
+            </h4>
+            <article>
+              <p>
+                If you want to get in touch with me about something or just to say
+                hi, reach out on social media or send me an email. Subscribe to the academic blogs with RSS!
+              </p>
+            </article>
+            <SocialIcons icon_size={'text-3xl'} />
+          </span>
+        </section>
+        
       </div>
     </aside>
   </Container>
