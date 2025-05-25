@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { MUSIC } from "@consts";
+import MusicCard from "@components/MusicCard.astro";
+
+const musics = (await getCollection("musics"))
+  .filter((music) => !music)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title={MUSIC.TITLE} description={MUSIC.DESCRIPTION}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <div class="space-y-10">
+        <div class="animate font-semibold text-black dark:text-white">
+          Music
+        </div>
+        <ul class="animate not-prose flex flex-col gap-4">
+          
+          <li>
+            <MusicCard music_file_path="/music/Chinese-Style-demo.mp3" pdf_file_path="" title="冬日黄昏" description="A Chinese style arrangement" link_description="" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/House demo.mp3" pdf_file_path="" title="理想？ 现实？" description="Summertime vibes" link_description="" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/fallin' all in you.mp3" pdf_file_path="/pdfs/fallin' all in you.pdf" title="Fallin' all in you" description="Shawn Mendes" link_description="Guitar Tabs" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/2002.mp3" pdf_file_path="/pdfs/2002.pdf" title="2002" description="Anne Marie" link_description="Guitar Tabs" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/strawberries&cigarettes.mp3" pdf_file_path="/pdfs/strawberries&cigarettes.pdf" title="Strawberries & Cigarettes" description="Troye Sivan" link_description="Guitar Tabs" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/WUJI.mp3" pdf_file_path="/pdfs/WUJI.pdf" title="无羁 WU JI" description="The Untamed OST" link_description="Guitar Tabs" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/Jazz-demo.mp3" pdf_file_path="" title="Jazzy Music" description="A Jazzy piece with LoFi vibes" link_description="" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/if I can't have you.mp3" pdf_file_path="/pdfs/if I can't have you.pdf" title="If I Can't Have You" description="Shawn Mendes" link_description="Guitar Tabs" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/everytime.mp3" pdf_file_path="/pdfs/everytime.pdf" title="Everytime" description="The Descendants of the Sun OST" link_description="Guitar Tabs" />
+          </li>
+          <li>
+            <MusicCard music_file_path="/music/love scenario.mp3" pdf_file_path="/pdfs/love scenario.pdf" title="Love Scenario" description="IKON" link_description="Guitar Tabs" />
+          </li>
+          <!-- <li>
+            <MusicCard music_file_path="/music/For You.mp3" pdf_file_path="/pdfs/For You.pdf" title="For You" description="CHEN/BAEKHYUN/XIUMIN" link_description="Guitar Tabs" />
+          </li> -->
+        </ul>
+      </div>
+    </aside>
+  </Container>
+</Layout>
